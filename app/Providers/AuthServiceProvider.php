@@ -25,6 +25,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        /* GATE definido para retornar se true caso o usuário possua a role admin em seu cadastro*/
+        Gate::define('access-admin', function($user){
+            return $user->role == \CodeFin\User::ROLE_ADMIN;
+        });
     }
 }
